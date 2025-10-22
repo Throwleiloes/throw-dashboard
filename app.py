@@ -460,7 +460,11 @@ def get_badge_tipo(tipo):
 # Carregar dados
 @st.cache_data
 def carregar_dados():
-    df = pd.read_csv('leiloes.csv')
+    try:
+        df = pd.read_csv('leiloes.csv')
+    except Exception as e:
+        st.error(f"Erro ao carregar dados: {e}")
+        return pd.DataFrame()
     
     for col in ['DATA DO LEILÃO']:
         if col in df.columns:
