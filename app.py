@@ -461,7 +461,9 @@ def get_badge_tipo(tipo):
 @st.cache_data
 def carregar_dados():
     try:
-        df = pd.read_csv('leiloes.csv')
+        # Carregar diretamente do Google Sheets
+        url = 'https://docs.google.com/spreadsheets/d/1xiWbyAON9ctAKmrMKzpzAvRa3w88ZP_lJyJpov0H2eY/export?format=csv&gid=1162190664'
+        df = pd.read_csv(url)
     except Exception as e:
         st.error(f"Erro ao carregar dados: {e}")
         return pd.DataFrame()
